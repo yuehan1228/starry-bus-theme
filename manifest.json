@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "id": "local.starry-bus-theme",
   "name": "Starry Bus Theme",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Starry Bus glassmorphic theme pack for PI-Desktop with automatic OS light/dark theme switching between Starry Bus Night and Starry Bus Day.",
   "safetyNotes": "Registers themes and a panel. Runs fixed read-only OS appearance queries using reg.exe on Windows, defaults on macOS, or gsettings on Linux every four seconds in Auto mode. Reads bundled assets and writes only plugin-owned data. No network or credential access.",
   "main": "main.js",

@@ -1,0 +1,14 @@
+/*
+ * 星夜巴士 · 跟随系统 (Starry Bus Auto)
+ * 运行时由 main.js 实时检测操作系统深色/浅色主题，自动同步为「夜空版 (Dark)」或「云昼版 (Light)」
+ */
+:root,
+:root[data-plugin-theme="plugin:local.starry-bus-theme:starry-bus-auto"] {
+  color-scheme: dark;
+  --ds-bg-under: #061220;
+  --ds-bg-primary: rgba(9, 25, 43, 0.72);
+  --ds-text-primary: #eef5fb;
+  --ds-text-secondary: #bdd2e4;
+  --ds-accent: #4da6e8;
+  --ds-focus: #f0b85a;
+}

@@ -1,0 +1,174 @@
+/*
+ * 星夜巴士 · 云昼版 (Starry Bus Day)
+ * 灵感源自插画中央的巨型积雨云亮白、晴空浅蓝、复古小巴士晴空蓝与草坡暖金绿
+ */
+:root[data-theme="light"],
+:root[data-plugin-theme="plugin:local.starry-bus-theme:starry-bus-day"],
+:root[data-plugin-theme="plugin:local.starry-bus-theme:starry-bus-auto"] {
+  color-scheme: light;
+
+  /* 核心画板与层级底色（提取自积雨云亮白与天光浅蓝） */
+  --ds-bg-under: #dce9f5;
+  --ds-bg-primary: rgba(244, 248, 252, 0.78);
+  --ds-settings-rail-bg: rgba(232, 241, 249, 0.80);
+  --ds-bg-sidebar: rgba(232, 241, 249, 0.80);
+  --ds-bg-sidebar-image: linear-gradient(180deg, rgba(255, 255, 255, 0.55) 0%, rgba(214, 232, 247, 0.35) 100%);
+  --ds-bg-secondary: rgba(238, 245, 251, 0.84);
+  --ds-bg-tertiary: rgba(226, 237, 247, 0.88);
+  --ds-bg-inset: rgba(216, 230, 242, 0.76);
+  --ds-bg-dock: rgba(236, 243, 250, 0.84);
+  --ds-bg-dock-raised: rgba(248, 251, 254, 0.82);
+  --ds-bg-elevated: rgba(250, 252, 255, 0.90);
+  --ds-bg-elevated-opaque: #f7fafe;
+  --ds-bg-elevated-primary: rgba(250, 252, 255, 0.95);
+  --ds-bg-composer: rgba(252, 254, 255, 0.88);
+
+  /* 侧栏玻璃光泽 */
+  --ds-sidebar-glass-tint: rgba(232, 241, 249, 0.76);
+  --ds-sidebar-glass-sheen-top: rgba(255, 255, 255, 0.65);
+  --ds-sidebar-glass-sheen-bottom: rgba(242, 204, 108, 0.14);
+
+  /* 交互悬停与激活态 */
+  --ds-bg-hover: rgba(28, 86, 138, 0.07);
+  --ds-bg-active: rgba(28, 86, 138, 0.12);
+  --ds-bg-chip: rgba(28, 86, 138, 0.08);
+  --ds-tile: rgba(28, 86, 138, 0.05);
+  --ds-tile-hover: rgba(28, 86, 138, 0.09);
+  --ds-tile-deep: rgba(28, 86, 138, 0.13);
+  --ds-raised: #ffffff;
+  --ds-raised-shadow: 0 2px 6px rgba(15, 42, 68, 0.10), 0 0 0 0.5px rgba(28, 86, 138, 0.12);
+
+  /* 文本色阶（深海夜空蓝作正文墨色，保证高对比度） */
+  --ds-text-primary: #0d2338;
+  --ds-text-secondary: #2c4c69;
+  --ds-text-muted: #527391;
+  --ds-text-faint: #82a0ba;
+  --ds-placeholder-ink: #5d7e9c;
+  --ds-prose-kbd-fg: #1c3b57;
+
+  /* 边框色阶 */
+  --ds-border: rgba(24, 74, 120, 0.13);
+  --ds-border-default: rgba(24, 74, 120, 0.12);
+  --ds-border-subtle: rgba(24, 74, 120, 0.07);
+  --ds-border-strong: rgba(24, 74, 120, 0.20);
+
+  /* 强调色与语义色 */
+  --ds-accent: #246fa8;
+  --ds-accent-hover: #1b5c8f;
+  --ds-accent-soft: #4d8ec2;
+  --ds-accent-foreground: #ffffff;
+  --ds-focus: #d4882a;
+  --ds-success: #1f8f52;
+  --ds-warning: #c97a16;
+  --ds-error: #cf3b36;
+  --ds-info: #246fa8;
+  --ds-purple: #6d3cc7;
+
+  /* 控件与设置面板细节 */
+  --ds-settings-field-bg: rgba(255, 255, 255, 0.86);
+  --ds-settings-nav-active: rgba(36, 111, 168, 0.13);
+  --ds-field-inset-bg: rgba(226, 237, 247, 0.72);
+  --ds-field-inset-focus-bg: #ffffff;
+  --ds-switch-track-off: rgba(24, 74, 120, 0.16);
+  --ds-switch-track-off-hover: rgba(24, 74, 120, 0.24);
+  --ds-switch-ring-off: rgba(24, 74, 120, 0.22);
+  --ds-switch-knob-off: #ffffff;
+  --ds-switch-knob-on: #ffffff;
+
+  /* 代码块、思考块与遮罩 */
+  --ds-thinking-code-bg: rgba(226, 237, 247, 0.65);
+  --ds-mermaid-canvas: #f8fbff;
+  --ds-code-head-bg: rgba(28, 86, 138, 0.06);
+  --ds-code-hover-bg: rgba(28, 86, 138, 0.10);
+  --ds-tool-row-bg: rgba(255, 255, 255, 0.66);
+  --ds-scrim: rgba(13, 35, 56, 0.28);
+  --ds-modal-veil: rgba(238, 245, 251, 0.78);
+  --ds-send-disabled-bg: #8ca5bc;
+  --ds-send-disabled-fg: #ffffff;
+
+  /* 阴影 */
+  --ds-shadow-dialog: 0 18px 48px rgba(13, 35, 56, 0.18), 0 0 0 1px rgba(24, 74, 120, 0.10);
+  --ds-shadow-model-menu: 0 12px 32px rgba(13, 35, 56, 0.14), 0 0 0 1px rgba(24, 74, 120, 0.10);
+  --ds-elevation-stroke: 0 0 0 0.5px rgba(24, 74, 120, 0.14);
+  --ds-shadow-composer: 0 8px 26px rgba(15, 45, 74, 0.10), 0 0 0 1px rgba(36, 111, 168, 0.15);
+}
+
+/* 云昼版全屏插画背景层 */
+:root[data-plugin-theme="plugin:local.starry-bus-theme:starry-bus-day"] .app-scenic-backdrop,
+:root[data-plugin-theme="plugin:local.starry-bus-theme:starry-bus-auto"] .app-scenic-backdrop {
+  background-image:
+    linear-gradient(
+      180deg,
+      rgba(244, 248, 253, 0.78) 0%,
+      rgba(236, 244, 252, 0.68) 50%,
+      rgba(232, 242, 238, 0.76) 100%
+    )/* __STARRY_BUS_WALLPAPER__ */;
+  background-position: center 58%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+:root[data-plugin-theme="plugin:local.starry-bus-theme:starry-bus-day"] .app-shell,
+:root[data-plugin-theme="plugin:local.starry-bus-theme:starry-bus-day"] .main-pane,
+:root[data-plugin-theme="plugin:local.starry-bus-theme:starry-bus-day"] .chat-surface,
+:root[data-plugin-theme="plugin:local.starry-bus-theme:starry-bus-day"] .route-page,
+:root[data-plugin-theme="plugin:local.starry-bus-theme:starry-bus-day"] .app-shell.settings-mode,
+:root[data-plugin-theme="plugin:local.starry-bus-theme:starry-bus-day"] .settings-shell,
+:root[data-plugin-theme="plugin:local.starry-bus-theme:starry-bus-day"] .settings-shell-full,
+:root[data-plugin-theme="plugin:local.starry-bus-theme:starry-bus-day"] .settings-content,
+:root[data-plugin-theme="plugin:local.starry-bus-theme:starry-bus-auto"] .app-shell,
+:root[data-plugin-theme="plugin:local.starry-bus-theme:starry-bus-auto"] .main-pane,
+:root[data-plugin-theme="plugin:local.starry-bus-theme:starry-bus-auto"] .chat-surface,
+:root[data-plugin-theme="plugin:local.starry-bus-theme:starry-bus-auto"] .route-page,
+:root[data-plugin-theme="plugin:local.starry-bus-theme:starry-bus-auto"] .app-shell.settings-mode,
+:root[data-plugin-theme="plugin:local.starry-bus-theme:starry-bus-auto"] .settings-shell,
+:root[data-plugin-theme="plugin:local.starry-bus-theme:starry-bus-auto"] .settings-shell-full,
+:root[data-plugin-theme="plugin:local.starry-bus-theme:starry-bus-auto"] .settings-content {
+  background: transparent !important;
+}
+
+:root[data-plugin-theme="plugin:local.starry-bus-theme:starry-bus-day"] .sidebar-surface,
+:root[data-plugin-theme="plugin:local.starry-bus-theme:starry-bus-day"] .sidebar-rail,
+:root[data-plugin-theme="plugin:local.starry-bus-theme:starry-bus-day"] .settings-shell-full .settings-nav.sidebar-surface,
+:root[data-plugin-theme="plugin:local.starry-bus-theme:starry-bus-auto"] .sidebar-surface,
+:root[data-plugin-theme="plugin:local.starry-bus-theme:starry-bus-auto"] .sidebar-rail,
+:root[data-plugin-theme="plugin:local.starry-bus-theme:starry-bus-auto"] .settings-shell-full .settings-nav.sidebar-surface {
+  background-color: rgba(235, 243, 250, 0.76) !important;
+  backdrop-filter: blur(16px) saturate(1.2);
+  border-right: 1px solid rgba(24, 74, 120, 0.10);
+}
+
+:root[data-plugin-theme="plugin:local.starry-bus-theme:starry-bus-day"] .work-panel,
+:root[data-plugin-theme="plugin:local.starry-bus-theme:starry-bus-auto"] .work-panel {
+  background-color: rgba(240, 246, 252, 0.80) !important;
+  backdrop-filter: blur(16px) saturate(1.2);
+  border-left: 1px solid rgba(24, 74, 120, 0.10);
+}
+
+:root[data-plugin-theme="plugin:local.starry-bus-theme:starry-bus-day"] .conversation-topbar,
+:root[data-plugin-theme="plugin:local.starry-bus-theme:starry-bus-day"] .main-titlebar,
+:root[data-plugin-theme="plugin:local.starry-bus-theme:starry-bus-day"] .settings-titlebar,
+:root[data-plugin-theme="plugin:local.starry-bus-theme:starry-bus-day"] .window-controls,
+:root[data-plugin-theme="plugin:local.starry-bus-theme:starry-bus-auto"] .conversation-topbar,
+:root[data-plugin-theme="plugin:local.starry-bus-theme:starry-bus-auto"] .main-titlebar,
+:root[data-plugin-theme="plugin:local.starry-bus-theme:starry-bus-auto"] .settings-titlebar,
+:root[data-plugin-theme="plugin:local.starry-bus-theme:starry-bus-auto"] .window-controls {
+  background: linear-gradient(180deg, rgba(244, 248, 253, 0.82) 0%, rgba(244, 248, 253, 0.35) 100%) !important;
+  backdrop-filter: blur(10px);
+}
+
+:root[data-plugin-theme="plugin:local.starry-bus-theme:starry-bus-day"] .composer-shell,
+:root[data-plugin-theme="plugin:local.starry-bus-theme:starry-bus-auto"] .composer-shell {
+  background: rgba(255, 255, 255, 0.88) !important;
+  backdrop-filter: blur(18px) saturate(1.25);
+  border: 1px solid rgba(36, 111, 168, 0.18);
+}
+
+:root[data-plugin-theme="plugin:local.starry-bus-theme:starry-bus-day"] .message-row.user .message-bubble,
+:root[data-plugin-theme="plugin:local.starry-bus-theme:starry-bus-auto"] .message-row.user .message-bubble {
+  background: linear-gradient(135deg, rgba(46, 125, 189, 0.16) 0%, rgba(235, 180, 82, 0.15) 100%) !important;
+  border: 1px solid rgba(36, 111, 168, 0.22);
+  color: #0d2338;
+  backdrop-filter: blur(8px);
+}

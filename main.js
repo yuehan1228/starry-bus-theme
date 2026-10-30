@@ -117,12 +117,11 @@ async function syncAndRegisterThemes(systemScheme) {
   return { dataDir: cachedDataDir, wallpaperUrlPath: cachedWallpaperUrlPath };
 }
 
-function isStarryThemeId(themeId) {
-  return (
-    themeId === FULL_AUTO_ID ||
-    themeId === FULL_NIGHT_ID ||
-    themeId === FULL_DAY_ID
-  );
+function modeForTheme(themeId) {
+  if (themeId === FULL_AUTO_ID) return "auto";
+  if (themeId === FULL_NIGHT_ID) return "night";
+  if (themeId === FULL_DAY_ID) return "day";
+  return null;
 }
 
 function syncActiveThemeWithMode(options = {}) {
@@ -152,13 +151,10 @@ async function performSync(options = {}) {
   } else if (currentMode === "day") {
     targetThemeId = FULL_DAY_ID;
   } else {
-    targetThemeId = systemScheme === "light" ? FULL_DAY_ID : FULL_NIGHT_ID;
+    targetThemeId = FULL_AUTO_ID;
   }
 
-  const shouldSwitch =
-    options.forceApply ||
-    isStarryThemeId(currentTheme) ||
-    !currentTheme;
+  const shouldSwitch = options.forceApply || currentTheme === FULL_AUTO_ID;
 
   if (shouldSwitch && targetThemeId && currentTheme !== targetThemeId) {
     await pi.app.setTheme(targetThemeId);
@@ -210,6 +206,12 @@ async function onLoad() {
     settings?.themeMode === "night" || settings?.themeMode === "day"
       ? settings.themeMode
       : "auto";
+  const initialAppearance = await pi.app.getAppearance();
+  const selectedMode = modeForTheme(initialAppearance?.theme);
+  if (selectedMode && selectedMode !== currentMode) {
+    currentMode = selectedMode;
+    await pi.plugin.setSettings({ themeMode: currentMode });
+  }
 
   await syncActiveThemeWithMode({ forceUpsert: true, forceApply: false });
 
@@ -226,11 +228,13 @@ async function onLoad() {
   pi.events.on("plugin:settingsChanged", settingsChangeHandler);
 
   appearanceChangeHandler = (appearance) => {
-    const selected = appearance?.theme || "";
-    if (selected === FULL_AUTO_ID && currentMode !== "auto") {
-      currentMode = "auto";
-      void pi.plugin.setSettings({ themeMode: "auto" }).catch(() => {});
-      void syncActiveThemeWithMode({ forceUpsert: true, forceApply: true }).catch(console.error);
+    const nextMode = modeForTheme(appearance?.theme);
+    if (nextMode && nextMode !== currentMode) {
+      currentMode = nextMode;
+      void pi.plugin.setSettings({ themeMode: nextMode }).catch(console.error);
+    }
+    if (nextMode === "auto") {
+      void syncActiveThemeWithMode().catch(console.error);
     }
   };
   pi.events.on("appearance:changed", appearanceChangeHandler);
